@@ -1,0 +1,49 @@
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.msg-list {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+}
+.msg-list ul {
+    padding: 10px;
+    min-height: 200px;
+    max-height: 400px;
+    overflow: auto;
+    border: 1px solid #ddd;
+}
+.msg-list li {
+    float: left;
+    clear: both;
+    margin: 10px 0;
+    padding: 5px;
+    line-height: 2;
+    border-radius: 5px;
+    background-color: #efefef;
+}
+.msg-list li.active {
+    float: right;
+    background-color: #58bc58;
+    color: #fff;
+}       
+.msg-list textarea {
+    display: block;
+    min-height: 50px;
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+.status {
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 5px 10px;
+    text-align: center;
+    color: #999;
+}

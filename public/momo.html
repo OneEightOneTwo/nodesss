@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>momo聊天</title>
+</head>
+<!-- momo Css -->
+<link rel="stylesheet" href="./stylesheets/momo.css">
+<!-- layui CSS -->
+<link rel="stylesheet" href="./layui2/layui/css/layui.css" media="all">
+<!-- layui js -->
+<script src="./layui2/layui/layui.js" charset="utf-8"></script>
+<!-- jquery -->
+<script src="./javascripts/jquery-1.10.1.min.js"></script>
+<!-- js公用 -->
+<script src="javascripts/common.js"></script>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">果蔬新鲜</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item">
+                    <a href="SalesData.html">销量</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">商品管理</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">用户</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">其它系统</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="">陌陌聊天</a>
+                        </dd>
+                        <dd>
+                            <a href="">授权管理</a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;" class="gb-dengl">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd id="BIT">
+                            <a href="javascript:;">基本资料</a>
+                        </dd>
+                        <dd id="user">
+                            <a href="javascript:;">管理员注册</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;" class="gb-zcsjf"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">所有商品</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="node.html">水果类</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">肉类</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">蔬菜类</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">订单管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="order_form.html">订单信息</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="upgoods.html">发布商品</a>
+                    </li>
+                    <li class="layui-nav-item" >
+                        <a href="javascript:;">管理员信息</a>
+                        <dl class="layui-nav-child">
+                            <dd id="fruits">
+                                <a href="user.html">网站用户</a>
+                            </dd>
+                            <dd>
+                                <a href="managers.html">后台管理员</a>
+                            </dd>
+                            <dd>
+                                <a href="management.html">角色管理</a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 内容部分 -->
+        <div class="layui-body">
+            <!-- webSocket -->
+            <h1>陌陌聊天</h1>
+            <div id="autoAnswer" class="msg-list">
+                <ul id="list">
+                </ul>
+                <textarea id="text"></textarea>
+                <input type="button" name="btn" id="btn" value="发送信息" />
+            </div>
+        </div>
+        <script>
+            //JavaScript代码区域
+            layui.use('element', function () {
+                var element = layui.element;
+            });
+        </script>
+        <script src="./javascripts/webSocket.js"></script>
+</body>
+
+</html>

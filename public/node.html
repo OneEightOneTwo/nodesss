@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>果蔬新鲜后台</title>
+    <!-- layui CSS -->
+    <link rel="stylesheet" href="layui2/layui/css/layui.css" media="all">
+    <!-- layui js -->
+    <script src="layui2/layui/layui.js" charset="utf-8"></script>
+    <!-- jquery -->
+    <script src="javascripts/jquery-1.10.1.min.js"></script>
+    <!-- js公用 -->
+    <script src="javascripts/common.js"></script>
+    <script src="javascripts/node2.js"></script>
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">果蔬新鲜</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item" id="SV">
+                    <a href="SalesData.html">销量</a>
+                </li>
+                <li class="layui-nav-item" id="run">
+                    <a href="javascript:;">商品管理</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">用户</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">其它系统</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="momo.html">陌陌聊天</a>
+                        </dd>
+                        <dd>
+                            <a href="">授权管理</a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;" class="gb-dengl">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd id="BIT">
+                            <a href="javascript:;">基本资料</a>
+                        </dd>
+                        <dd id="user">
+                            <a href="javascript:;">管理员注册</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;" class="gb-zcsjf"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed" id="allgoods">
+                        <a class="" href="javascript:;">所有商品</a>
+                        <dl class="layui-nav-child">
+                            <dd id="fruits" class="layui-this">
+                                <a href="javascript:;">水果类</a>
+                            </dd>
+                            <dd id="meat">
+                                <a href="javascript:;">肉类</a>
+                            </dd>
+                            <dd id="find">
+                                <a href="javascript:;">蔬菜类</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">订单管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="order_form.html">订单信息</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item" id="showGoods">
+                        <a href="upgoods.html">发布商品</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">管理员信息</a>
+                        <dl class="layui-nav-child">
+                            <dd id="fruits">
+                                <a href="user.html">网站用户</a>
+                            </dd>
+                            <dd>
+                                <a href="managers.html">后台管理员</a>
+                            </dd>
+                            <dd>
+                                <a href="management.html">角色管理</a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+
+            <div id="container" style="height: 100%;">
+                <!-- 商品信息、管理员信息 -->
+                <div style="padding: 15px;" id="goods">
+                    <div class="layui-form">
+                        <table class="layui-table">
+                            <colgroup>
+                                <col width="150">
+                                <col width="150">
+                                <col width="200">
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>商品名</th>
+                                    <th>信息</th>
+                                    <th>种类</th>
+                                    <th>销量</th>
+                                    <th>价格</th>
+                                    <th>上架时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody1">
+                                <!-- <tr>
+                                    <td>贤心</td>
+                                    <td>汉族</td>
+                                    <td>1989-10-14</td>
+                                    <td>人生似修行</td>
+                                    <td>人生似修行</td>
+                                    <td>人生似修行</td>
+                                    <td>人生似修行</td>
+                                    <td>人生似修行</td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="demo0" style="text-align: center"></div>
+                </div>
+                <!-- 00000000 -->
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-main" style="display: none;">
+                        <!-- 页码 -->
+                        <div id="page">
+                            <p style="float: left;line-height: 60px;font-weight: bolder">种类：</p>
+                            <ul>
+                                <li id="fruit2">水果类</li>
+                                <li id="cai2">蔬菜类</li>
+                                <li id="meat2">肉类</li>
+                            </ul>
+                        </div>
+                        <div id="LAY_preview" style="clear: both;">
+                            <div class="layui-form layui-border-box layui-table-view" lay-filter="LAY-table-1"
+                                lay-id="test" style=" ">
+                                <div class="layui-table-tool">
+                                    <div class="layui-table-tool-self">
+                                        <div class="layui-inline" title="筛选列" lay-event="LAYTABLE_COLS">
+                                            <i class="layui-icon layui-icon-cols"></i>
+                                        </div>
+                                        <div class="layui-inline" title="导出" lay-event="LAYTABLE_EXPORT">
+                                            <i class="layui-icon layui-icon-export"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-table-box">
+                                    <div class="layui-table-header">
+                                        <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+                                            <thead>
+                                                <tr>
+                                                    <th data-field="0" data-key="1-0-0" data-unresize="true"
+                                                        class=" layui-table-col-special">
+                                                        <div
+                                                            class="layui-table-cell laytable-cell-1-0-0 laytable-cell-checkbox">
+                                                            <div class="layui-unselect layui-form-checkbox"
+                                                                lay-skin="primary">
+                                                                <input type="checkbox" class="che chebox"
+                                                                    name="layTableCheckbox" lay-skin="primary"
+                                                                    lay-filter="layTableAllChoose"
+                                                                    style="display: block;width: 18px;height: 18px;">
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                    <th data-field="id" data-key="1-0-1" data-unresize="true"
+                                                        class=" layui-unselect">
+                                                        <div class="layui-table-cell laytable-cell-1-0-1">
+                                                            <span>ID</span>
+                                                            <span class="layui-table-sort layui-inline">
+                                                                <i class="layui-edge layui-table-sort-asc"
+                                                                    title="升序"></i>
+                                                                <i class="layui-edge layui-table-sort-desc"
+                                                                    title="降序"></i>
+                                                            </span>
+                                                        </div>
+                                                    </th>
+                                                    <th data-field="username" data-key="1-0-2" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-2">
+                                                            <span>商品名</span>
+                                                        </div>
+                                                    </th>
+                                                    <th data-field="email" data-key="1-0-3" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-3">
+                                                            <span>信息</span>
+                                                        </div>
+                                                    </th>
+                                                    <th data-field="city" data-key="1-0-5" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-5">
+                                                            <span>种类</span>
+                                                        </div>
+                                                    </th>
+                                                    <th data-field="experience" data-key="1-0-7"
+                                                        class=" layui-unselect">
+                                                        <div class="layui-table-cell laytable-cell-1-0-7">
+                                                            <span>销量</span>
+                                                            <span class="layui-table-sort layui-inline">
+                                                            </span>
+                                                        </div>
+                                                    </th>
+                                                    <th data-field="ip" data-key="1-0-8" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-8">
+                                                            <span>价格</span>
+                                                        </div>
+                                                    </th>
+                                                    <th data-field="logins" data-key="1-0-9" class=" layui-unselect">
+                                                        <div class="layui-table-cell laytable-cell-1-0-9">
+                                                            <span>库存</span>
+                                                            <span class="layui-table-sort layui-inline">
+                                                                <i class="layui-edge layui-table-sort-asc"
+                                                                    title="升序"></i>
+                                                                <i class="layui-edge layui-table-sort-desc"
+                                                                    title="降序"></i>
+                                                            </span>
+                                                        </div>
+                                                    </th>
+                                                    <th data-field="joinTime" data-key="1-0-10" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-10">
+                                                            <span>加入时间</span>
+                                                        </div>
+                                                    </th>
+                                                    <th data-field="11" data-key="1-0-11"
+                                                        class=" layui-table-col-special">
+                                                        <div class="layui-table-cell laytable-cell-1-0-11">
+                                                            <span>操作</span>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="layui-table-body layui-table-main">
+                                        <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+                                            <tbody id="tbody2">
+                                                <!-- <tr data-index="2" class="">
+                                                    <td data-field="0" data-key="1-0-0" class="layui-table-col-special">
+                                                        <div class="layui-table-cell laytable-cell-1-0-0 laytable-cell-checkbox">
+                                                            <div class="layui-unselect layui-form-checkbox" lay-skin="primary">
+                                                                <input type="checkbox" name="layTableCheckbox" lay-skin="primary" lay-filter="layTableAllChoose" style="display: block;width: 18px;height: 18px;">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td data-field="id" data-key="1-0-1" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-1">10003</div>
+                                                    </td>
+                                                    <td data-field="username" data-key="1-0-2" data-edit="text" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-2">王勃</div>
+                                                    </td>
+                                                    <td data-field="email" data-key="1-0-3" data-edit="text" data-content="xianxin@layui.com" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-3">
+                                                            <em>xianxin@layui.com</em>
+                                                        </div>
+                                                    </td>
+                                                    <td data-field="city" data-key="1-0-5" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-5">浙江杭州</div>
+                                                    </td>
+                                                    <td data-field="experience" data-key="1-0-7" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-7">65</div>
+                                                    </td>
+                                                    <td data-field="ip" data-key="1-0-8" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-8">192.168.0.8</div>
+                                                    </td>
+                                                    <td data-field="logins" data-key="1-0-9" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-9">106</div>
+                                                    </td>
+                                                    <td data-field="joinTime" data-key="1-0-10" class="">
+                                                        <div class="layui-table-cell laytable-cell-1-0-10">2016-10-14</div>
+                                                    </td>
+                                                    <td data-field="11" data-key="1-0-11" data-off="true" class="layui-table-col-special">
+                                                        <div class="layui-table-cell laytable-cell-1-0-11">
+                                                            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                                                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                                                        </div>
+                                                    </td>
+                                                </tr> -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                                <style>
+                                    #page ul li {
+                                        float: left;
+                                        background: rgb(47, 125, 131);
+                                        width: 60px;
+                                        height: 30px;
+                                        margin: 15px;
+                                        text-align: center;
+                                        line-height: 30px;
+                                        border-radius: 10px;
+                                        cursor: pointer;
+                                        color: #fff;
+                                    }
+
+                                    .laytable-cell-1-0-0 {
+                                        width: 48px;
+                                    }
+
+                                    .laytable-cell-1-0-1 {
+                                        width: 80px;
+                                    }
+
+                                    .laytable-cell-1-0-2 {
+                                        width: 120px;
+                                    }
+
+                                    .laytable-cell-1-0-3 {
+                                        width: 150px;
+                                    }
+
+                                    .laytable-cell-1-0-4 {
+                                        width: 100px;
+                                    }
+
+                                    .laytable-cell-1-0-5 {
+                                        width: 100px;
+                                    }
+
+                                    .laytable-cell-1-0-6 {}
+
+                                    .laytable-cell-1-0-7 {
+                                        width: 80px;
+                                    }
+
+                                    .laytable-cell-1-0-8 {
+                                        width: 120px;
+                                    }
+
+                                    .laytable-cell-1-0-9 {
+                                        width: 100px;
+                                    }
+
+                                    .laytable-cell-1-0-10 {
+                                        width: 120px;
+                                    }
+
+                                    .laytable-cell-1-0-11 {
+                                        width: 150px;
+                                    }
+                                </style>
+                            </div>
+                            <script type="text/html" id="barDemo">
+                                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //JavaScript代码区域
+        layui.use('element', function () {
+            var element = layui.element;
+        });
+    </script>
+
+
+</body>
+
+</html>
